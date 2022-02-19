@@ -32,11 +32,12 @@ const useFirebase = () => {
 
   //observe auth state change or not
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       }
     });
+    return unsubscribe;
   }, []);
 
   return {
